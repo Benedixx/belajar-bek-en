@@ -33,9 +33,16 @@ const routes = [
         path: '/hello/{name?}',
         handler: (request, h) => {
             const {name = 'stranger'} = request.params;
-            return `Hello, ${name}!`;
-        }
-    },
+            const {lang} = request.query;
+            if(lang === 'es') {
+                return `Hola, ${name}!`;
+            } else if(lang === 'fr') {
+                return `Bonjour, ${name}!`;
+            } else {
+                return `Hello, ${name}!`;
+            }
+        },
+    }, 
 ];
 
 module.exports = routes;
